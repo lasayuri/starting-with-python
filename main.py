@@ -1,58 +1,21 @@
-pais = "Brasil"
-type(pais)
-print(pais) #variavel so existe depois de atribuido o valor#
+import forca
+import adivinhacao
 
-#python utiliza snake case#
+def escolhe_jogo():
+  print("****************************")
+  print("Escolha o seu jogo!")
+  print("****************************")
 
-import random 
+  print("(1) Forca (2) Adivinhação")
 
-print("************")
-print("Bem vindo ao jogo de Adivinhação!")
-print("************")
+  jogo = int(input("Qual jogo?"))
 
-numero_secreto = random.randrange(1,101)
-total_de_tentativas = 0
-pontos = 1000
+  if(jogo == 1):
+    print("Jogando forca")
+    forca.jogar()
+  elif(jogo == 2):
+    print("Jogando adivinhação")
+    adivinhacao.jogar()
 
-print("Qual o nível de dificuldade?")
-print("(1) Fácil (2) Médio (3) Difícil")
-
-nivel = int(input("Defina o nível: "))
-
-if(nivel == 1):
-  total_de_tentativas = 20
-elif(nivel == 2):
-  total_de_tentativas = 10
-else:
-  total_de_tentativas = 5
-
-#rodada = 1
-
-#while (rodada <= total_de_tentativas):
-for rodada in range(1, total_de_tentativas + 1):
-  print("Tentativa {} de {}".format(rodada, total_de_tentativas))
-
-  chute_str = input("Digite um número entre 1 e 100: ")
-  print("Você digitou ", chute_str)
-  chute = int(chute_str)
-
-  if(chute < 1 or chute > 100):
-    print("Você deve digitar um número entre 1 e 100!")
-    continue
-
-  acertou = chute == numero_secreto
-  maior = chute > numero_secreto
-  menor = chute < numero_secreto
-
-  if(acertou):
-    print("Parabéns! Você acertou e fez {} pontos!".format(pontos))
-    break
-  else:
-    if (maior):
-      print("O seu chute foi maior do que o número secreto!")
-    elif(menor):
-      print("O seu chute foi menor do que o número secreto!")
-    pontos_perdidos = abs(numero_secreto - chute)
-    pontos = pontos - pontos_perdidos
-      
-print("Fim do jogo")
+if(__name__ == "__main__"):
+  escolhe_jogo()
